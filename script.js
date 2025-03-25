@@ -27,14 +27,24 @@ document.getElementById('upload2').addEventListener('change', event => {
 
 // GIF作成＆ダウンロード
 document.getElementById('downloadBtn').addEventListener('click', async () => {
-    const gif = new GIF({ workers: 2, quality: 10 });
+    // GIFオブジェクト生成時にworkerScriptのパスを指定
+    const gif = new GIF({ 
+        workers: 2, 
+        quality: 10, 
+        width: 800, 
+        height: 450,
+        workerScript: 'gif.worker.js' // このパスが正しいか確認
+    });
+    
     const canvas = document.getElementById('captureCanvas');
     const ctx = canvas.getContext('2d');
 
+    // 10フレーム分キャプチャ（適宜調整してください）
     for (let i = 0; i < 10; i++) {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         ctx.drawImage(document.getElementById('animationArea'), 0, 0, canvas.width, canvas.height);
         gif.addFrame(canvas, { delay: 100 });
+        await new Promise(resolve => setTimeout(resolve, 100));
     }
 
     gif.on('finished', blob => {
@@ -46,3 +56,4 @@ document.getElementById('downloadBtn').addEventListener('click', async () => {
 
     gif.render();
 });
+
