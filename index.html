@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>対戦マッチアップアニメーション</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>対戦マッチアップアニメーション</h1>
+
+    <!-- 画像アップロード -->
+    <label>画像1: <input type="file" id="upload1"></label>
+    <label>画像2: <input type="file" id="upload2"></label>
+
+    <!-- テキスト入力 -->
+    <input type="text" id="text1" placeholder="テキスト1">
+    <input type="text" id="text2" placeholder="テキスト2">
+
+    <!-- ボタン -->
+    <button id="previewBtn">プレビュー</button>
+    <button id="downloadBtn">GIFダウンロード</button>
+
+    <!-- アニメーション領域 -->
+    <div id="animationArea">
+        <img id="image1" class="image">
+        <img id="image2" class="image">
+        <div id="vsfront"><img src="images/VS_.png" alt="VS"></div>
+        <div id="logo"><img src="images/logo3_title.png" alt="ロゴ"></div>
+        <canvas id="captureCanvas" width="800" height="450" style="display:none;"></canvas>
+    </div>
+
+    <script src="gif.worker.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
